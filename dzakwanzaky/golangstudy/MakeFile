@@ -1,0 +1,21 @@
+GCC=go
+GCMD=run
+GPATH=main.go
+
+RA512=4096
+RA256=2048
+
+run: 
+	$(GCC) $(GCMD) $(GPATH)
+
+# Please add these to your bash file
+#
+# export GOROOT=/usr/local/go
+# export PATH=$PATH:/usr/local/go/bin
+# export GOPATH=/home/$USER/Projects/Go
+# export PATH=$PATH:$GOPATH/bin
+
+
+create_keys:
+	ssh-keygen -t rsa -b $(RA512) -f keys/app.rsa
+	openssl rsa -in keys/app.rsa -pubout -outform PEM -out keys/app.rsa.pub
